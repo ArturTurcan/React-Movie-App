@@ -8,20 +8,22 @@ class Main extends React.Component {
         movies: [],}
         componentDidMount() {
             fetch("http://www.omdbapi.com/?apikey=88889831&s=matrix")
-                .then(response => response.json())
-                .then(data => this.setState({movies: data.Search}))
+                .then((response) => response.json())
+                .then((data) => this.setState({movies: data.Search}))
         }
 
-       searchMovies = (str) => {
-    fetch(`http://www.omdbapi.com/?apikey=88889831&s=${str}`)
+       searchMovies = (str, type = "all") => {
+    fetch(`http://www.omdbapi.com/?apikey=88889831&s=${str}${type !== "all" ?` &Type=${type}` : '' }`)
 .then(response => response.json())
-.then(data => this.setState({movies: data.Search}))
+.then((data) => this.setState({movies: data.Search}))
 }
         render(){
-            const {movies} = this.state
+            const { movies } = this.state
             return <main className="container content">
-                <Search searchMovies={this.searchMovies} />{
-                     movies.length ? ( <Movies movies={this.state.movies}/> ) : <Preloader/>}
+                <Search searchMovies={this.searchMovies} />
+                {
+                    movies.length ?( <Movies movies={this.state.movies}/>)  : <Preloader/>
+                }
                 </main>
         }
     }
