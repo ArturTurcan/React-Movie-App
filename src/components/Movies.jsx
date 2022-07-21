@@ -1,14 +1,11 @@
 import {Movie} from "./Movie";
-
 function Movies(props){
-const {movies} = props
+const {movies = [] } = props;
     return (
         <div className="movies">
-            {movies.map(movie =>{
-               return <Movie key={movie.id} {...movie}/>
-            })}
+            {movies.length ? movies.map((movie) =>  <Movie key={movies.imdbID} {...movie}/>) : (<h4>NOTHING FOUND</h4>)
+            }
         </div>
     )
 }
-
 export {Movies}

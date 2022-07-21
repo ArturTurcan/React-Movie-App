@@ -7,7 +7,7 @@ const {
     Poster: poster
 } = props
     return(
-        <div className="card movie">
+        <div id={id} className="card movie">
             <div className="card-image waves-effect waves-block waves-light">
 
                 {
