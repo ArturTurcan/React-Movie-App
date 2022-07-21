@@ -61,6 +61,15 @@ if (event.key === "Enter"){
                                checked={this.state.type === "series"}/>
                         <span>Series Only</span>
                     </label>
+                        <label>
+                        <input className="with-gap"
+                               name="type"
+                               type="radio"
+                               data-type="game"
+                               onChange={this.handleFilter}
+                               checked={this.state.type === "game"}/>
+                        <span>Game Only</span>
+                    </label>
                     </div>
                 </div>
             </div>
