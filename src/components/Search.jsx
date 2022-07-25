@@ -1,23 +1,17 @@
-import React from "react";
-
-class Search extends React.Component {
-    state ={
-        search: "",
-        type:  "all",
-    };
-    handleKey = (event) =>{
+import React, {useState} from "react";
+const Search = (props) =>{
+    const {searchMovies = Function.prototype,} = props
+    const [search, setSearch] = useState("")
+    const [type, setType] = useState("all")
+  const  handleKey = (event) =>{
 if (event.key === "Enter"){
-    this.props.searchMovies(this.state.search, this.state.type)
+    searchMovies(search, type)
 }
     };
-     handleFilter = (event) =>{
-
-         this.setState(() =>({type: event.target.dataset.type}), () =>{
-             this.props.searchMovies(this.state.search, this.state.type)
-         })
-
+   const  handleFilter = (event) =>{
+          setType(event.target.dataset.type )
+         searchMovies(search, event.target.dataset.type)
     };
-    render() {
         return (
             <div className="row">
                 <div className="col s12">
@@ -27,15 +21,14 @@ if (event.key === "Enter"){
                             placeholder="search"
                             id="email_inline"
                             type="search"
-                            value={this.state.search}
+                            value={search}
                             onChange={(e) =>
-                                this.setState({search: e.target.value})}
-                            onKeyDown={this.handleKey}
+                                setSearch(e.target.value)}
+                            onKeyDown={handleKey}
                             />
                         <button className="search-btn btn"
                                  onClick={() =>
-                                     this.props.searchMovies(this.state.search,
-                                         this.state.type)}>Search</button>
+                                    searchMovies(search, type)}>Search</button>
                     </div>
                     <div>
                         <label>
@@ -43,22 +36,22 @@ if (event.key === "Enter"){
                                    name="type"
                                    type="radio"
                                    data-type="all"
-                                   onChange={this.handleFilter}
-                                   checked={this.state.type === "all"}/>
+                                   onChange={handleFilter}
+                                   checked={type === "all"}/>
                             <span>All</span>
                         </label>  <label>
                         <input className="with-gap" name="type"
                                type="radio" data-type="movie"
-                               onChange={this.handleFilter}
-                               checked={this.state.type === "movie"}/>
+                               onChange={handleFilter}
+                               checked={type === "movie"}/>
                         <span>Movies Only</span>
                     </label> <label>
                         <input className="with-gap"
                                name="type"
                                type="radio"
                                data-type="series"
-                               onChange={this.handleFilter}
-                               checked={this.state.type === "series"}/>
+                               onChange={handleFilter}
+                               checked={type === "series"}/>
                         <span>Series Only</span>
                     </label>
                         <label>
@@ -66,14 +59,13 @@ if (event.key === "Enter"){
                                name="type"
                                type="radio"
                                data-type="game"
-                               onChange={this.handleFilter}
-                               checked={this.state.type === "game"}/>
+                               onChange={handleFilter}
+                               checked={type === "game"}/>
                         <span>Game Only</span>
                     </label>
                     </div>
                 </div>
             </div>
     )
-    }
 }
 export {Search}
