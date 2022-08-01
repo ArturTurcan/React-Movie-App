@@ -20,6 +20,7 @@ const {
             </div>
         </div>
     )
+
 }
 
 export {Movie}

@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 const Search = (props) =>{
     const {searchMovies = Function.prototype,} = props
-    const [search, setSearch] = useState("")
     const [type, setType] = useState("all")
+    const [search, setSearch] = useState(localStorage.getItem("key"))
   const  handleKey = (event) =>{
 if (event.key === "Enter"){
-    searchMovies(search, type)
+    searchMovies(search,type)
 }
     };
    const  handleFilter = (event) =>{
-          setType(event.target.dataset.type )
+          setType(event.target.dataset.type)
          searchMovies(search, event.target.dataset.type)
     };
         return (
@@ -19,11 +19,13 @@ if (event.key === "Enter"){
                         <input
                             className="validate"
                             placeholder="search"
-                            id="email_inline"
+                            id="email_inline saveServer"
                             type="search"
                             value={search}
-                            onChange={(e) =>
-                                setSearch(e.target.value)}
+                            onChange={(e) => {
+                                setSearch(e.target.value)
+                                localStorage.setItem("key", e.target.value)
+                            }}
                             onKeyDown={handleKey}
                             />
                         <button className="search-btn btn"
@@ -66,6 +68,8 @@ if (event.key === "Enter"){
                     </div>
                 </div>
             </div>
+
     )
 }
+
 export {Search}

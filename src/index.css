@@ -31,3 +31,17 @@ h4{
   color: red;
   margin-left: 450px;
 }
+h4{
+  color: red;
+  margin-left: 450px;
+}
+.active {
+  border: 1px solid red;
+  border-radius: 22px;
+  background-color: orangered;
+  box-shadow: 2px 2px 2px red;
+}
+.pagination{
+  display: flex;
+  justify-content: center;
+}

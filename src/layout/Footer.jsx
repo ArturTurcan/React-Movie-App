@@ -2,6 +2,7 @@ function Footer() {
 
     return(
 
+
         <footer className="page-footer teal accent-2">
             <div className="footer-copyright">
                 <div className="container">
